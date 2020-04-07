@@ -8,7 +8,7 @@ services:
     environment:
       POSTGRES_DB: keycloak
       POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD:
+      POSTGRES_PASSWORD: 
     networks:
       - default
   keycloak:
@@ -21,12 +21,15 @@ services:
       DB_SCHEMA: public
       DB_PASSWORD: 
       KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD:
+      KEYCLOAK_PASSWORD: 
       LETSENCRYPT_HOST: 
-      VIRTUAL_HOST:  
+      VIRTUAL_HOST: 
+      VIRTUAL_PORT: 
+      PROXY_ADDRESS_FORWARDING: 'true'
     expose:
-        - '80'
-        - '443'
+      - '80'
+      - '443'
+      - '8080'
     networks:
       - nextcloud_proxy-tier
       - default
@@ -36,5 +39,5 @@ networks:
   nextcloud_proxy-tier:
     external: true
   default:
-volumes: 
+volumes:
   postgres_data:
