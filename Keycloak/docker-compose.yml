@@ -1,4 +1,4 @@
-version: 3
+version: '3'
 
 services:
   postgres:
@@ -23,9 +23,8 @@ services:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD:
       LETSENCRYPT_HOST: 
-      VIRTUAL_HOST: 
-    ports:
-      expose:
+      VIRTUAL_HOST:  
+    expose:
         - '80'
         - '443'
     networks:
