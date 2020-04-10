@@ -22,8 +22,9 @@ services:
       DB_PASSWORD: 
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: 
-      # needed for letsencrypt. Set to address   
+      # needed for letsencrypt. Set to address accessible from the web.  
       LETSENCRYPT_HOST:
+      # Match this to letsencrypt host. Used by nginx container
       VIRTUAL_HOST: 
       VIRTUAL_PORT: '8080'
       PROXY_ADDRESS_FORWARDING: 'true'
