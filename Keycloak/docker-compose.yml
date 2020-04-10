@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: 7KRpHAosMzLnnv
+    networks:
+      - default
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_SCHEMA: public
+      DB_PASSWORD: 
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: 
+      # needed for letsencrypt. Set to address accessible from the web.  
+      LETSENCRYPT_HOST:
+      # Match this to letsencrypt host. Used by nginx container
+      VIRTUAL_HOST: 
+      VIRTUAL_PORT: '8080'
+      PROXY_ADDRESS_FORWARDING: 'true'
+    expose:
+      - '80'
+      - '443'
+      - '8080'
+    networks:
+      - nextcloud_proxy-tier
+      - default
+    depends_on:
+      - postgres
+networks:
+  nextcloud_proxy-tier:
+    external: true
+  default:
+volumes:
+  postgres_data:
