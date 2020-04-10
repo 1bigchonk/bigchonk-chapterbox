@@ -8,7 +8,7 @@ services:
     environment:
       POSTGRES_DB: keycloak
       POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: 
+      POSTGRES_PASSWORD: 7KRpHAosMzLnnv
     networks:
       - default
   keycloak:
@@ -22,9 +22,10 @@ services:
       DB_PASSWORD: 
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: 
-      LETSENCRYPT_HOST: 
+      # needed for letsencrypt. Set to address   
+      LETSENCRYPT_HOST:
       VIRTUAL_HOST: 
-      VIRTUAL_PORT: 
+      VIRTUAL_PORT: '8080'
       PROXY_ADDRESS_FORWARDING: 'true'
     expose:
       - '80'
